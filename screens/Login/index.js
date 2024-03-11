@@ -32,12 +32,11 @@ const Login = () => {
                     <TouchableOpacity style={tw`flex items-end mb-5`} onPress={() => navigation.goBack()}>
                         <Text style={tw`text-gray-700`}>Forgot Password?</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={tw`py-3 bg-yellow-400 rounded-xl`} onPress={() => navigation.goBack()}>
+                    <TouchableOpacity style={tw`py-3 bg-yellow-400 rounded-xl`} onPress={() => navigation.navigate('Home')}>
                         <Text style={tw`font-xl  font-bold text-center`}>Login</Text>
                     </TouchableOpacity>
                 </View>
             </View>
-
         </View>
     )
 }
