@@ -26,7 +26,7 @@ const QRScan = () => {
 
                 {/* <Text style={tw`text-white p-5 m-2`}>{data}</Text> */}
                 <Hyperlink linkDefault={true} linkStyle={{ color: 'white' }}>
-                    <Text style={tw`text-white p-5 m-2`}>Kết quả: {data}</Text>
+                    <Text style={tw`text-white  pl-6 flex `}>Kết quả:</Text><Text style={tw`text-white p-5 `} selectable={true} selectionColor='orange'> {data}</Text>
                 </Hyperlink>
             </SafeAreaView>
             <View>
