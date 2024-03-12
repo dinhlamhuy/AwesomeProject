@@ -1,19 +1,23 @@
-import { Image, Text, TouchableOpacity, View, TextInput } from "react-native"
+import {SafeAreaView, Image, Text, TouchableOpacity, View, TextInput } from "react-native"
 import React from 'react';
-import { SafeAreaView } from "react-native-safe-area-context";
+
 import { useNavigation } from "@react-navigation/native";
 import tw from 'twrnc';
+import { ArrowLeftIcon,ChevronLeftIcon } from "react-native-heroicons/outline";
 const Login = () => {
     const navigation = useNavigation();
     return (
         <View style={tw`flex-1 bg-blue-600 `}>
             <SafeAreaView style={tw`flex`}>
-                <View style={tw`flex-row justify-start`}>
+                <View style={tw`flex-row justify-start p-2`}>
                     <TouchableOpacity onPress={() => navigation.goBack()}>
-                        <Text>Back</Text>
+                        <ChevronLeftIcon style={tw`text-white `} />
                     </TouchableOpacity>
+                    <View style={tw`text-white flex  justify-center pl-2`}>
+                        <Text style={tw`text-white font-bold`}>Login</Text>
+                    </View>
                 </View>
-                <View style={tw`flex-row justify-center`}>
+                <View style={tw`flex-row justify-center -m-3`}>
                     <Image source={require('../../assets/image/lock.png')} style={{ width: 200, height: 200 }} />
                 </View>
             </SafeAreaView>
