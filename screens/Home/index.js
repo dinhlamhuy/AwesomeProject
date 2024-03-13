@@ -16,7 +16,7 @@ export default function Home() {
                 </View>
                 <View>
                     <TouchableOpacity
-                        onPress={() => Alert.alert("Notifications")}
+                        onPress={() => Alert.alert("Notifications","Thông báo")}
                         style={[tw`p-2 ml-15  rounded-lg bg-[#F9FAFB]`, { border: '1px soild #E5E7EB' }]}>
                         <BellIcon color={'#18181B'} />
                     </TouchableOpacity>
@@ -24,7 +24,7 @@ export default function Home() {
             </View>
             <View style={tw`flex-row justify-between items-center`}>
                 <View style={tw`w-[80%] relative`}>
-                    <TextInput key={'search'} style={[tw`p-3 px-12 bg-white rounded-lg  `, { border: '1px solid #D2D6DB' }]} placeholder='Search' />
+                    <TextInput key={'search'} style={[tw`p-3 px-12 bg-white rounded-full  `, { border: '1px solid #D2D6DB' }]} placeholder='Search' />
                     <View style={tw`absolute top-2 p-2 left-1 bg-[#F9FAFB] rounded-lg`}>
                         <TouchableOpacity>
                             <MagnifyingGlassIcon style={tw` text-2xl font-bold`} color={'#18181B'} />
@@ -62,8 +62,8 @@ function CardMenu({ icon, bgIcon, bgCard, label, link }) {
     const IconComponent = icon;
     const navigation = useNavigation();
     return (
-        <TouchableOpacity onPress={()=>{navigation.navigate(link)}}>
-            <View style={tw` ${bgCard} text-white rounded px-2 py-4  flex-row`}>
+        <TouchableOpacity onPress={()=>{navigation.navigate(link)}} key={label}>
+            <View style={tw` ${bgCard} text-white rounded-xl px-2 py-4  flex-row`}>
                 <View style={tw`w-12 h-12  rounded-xl  ${bgIcon} flex justify-center items-center`}>
                     <IconComponent style={[tw`text-gray-700 `]} />
                 </View>

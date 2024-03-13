@@ -3,8 +3,8 @@ import React from 'react';
 import { SafeAreaView } from "react-native-safe-area-context";
 import tw from 'twrnc';
 import { useNavigation } from "@react-navigation/native";
-// import LinearGradient from 'react-native-linear-gradient';
-const Welcome = () => {
+
+const Menu = () => {
     const navigation = useNavigation();
     return (
         <SafeAreaView style={tw`flex-1  bg-blue-600`} >
@@ -29,4 +29,4 @@ const Welcome = () => {
         </SafeAreaView>
     )
 }
-export default Welcome
+export default Menu

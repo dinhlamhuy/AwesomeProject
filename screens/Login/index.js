@@ -37,7 +37,7 @@ const Login = () => {
                         <Text style={tw`text-gray-700`}>Forgot Password?</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={tw`py-3 bg-yellow-400 rounded-xl`} onPress={() => navigation.navigate('Home')}>
-                        <Text style={tw`font-xl  font-bold text-center`}>Login</Text>
+                        <Text style={tw`  font-bold text-center`}>Login</Text>
                     </TouchableOpacity>
                 </View>
             </View>
