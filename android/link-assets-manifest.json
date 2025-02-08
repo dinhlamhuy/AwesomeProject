@@ -1,0 +1,33 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/image/e95060ad65c888baece1293453f3295d.jpg",
+      "sha1": "f939e7c05d274207bbaa844942a9d47ec329fe51"
+    },
+    {
+      "path": "assets/image/f601590635504752a5f24697fa99c38d.png",
+      "sha1": "7a662ceba06d0c5ca5768b89ce0c82e16654c539"
+    },
+    {
+      "path": "assets/image/lock.png",
+      "sha1": "6669ec0c61a604acc2f95ca8afbe110748e4c0af"
+    },
+    {
+      "path": "assets/image/ODYud2VibQ.webm",
+      "sha1": "5cf89b5625a97a02c3ebce87b2943b01f8dced39"
+    },
+    {
+      "path": "assets/image/welcome.avif",
+      "sha1": "8e2a5b9f5407cbec6faf7ad8e7a167b430538dc1"
+    },
+    {
+      "path": "assets/image/welcome.jpg",
+      "sha1": "9d1420a4e527f3e1e0d6c4070ef41c6fea63e768"
+    },
+    {
+      "path": "assets/image/welcome.png",
+      "sha1": "f12b5c7c83b66f66e28c0f65b9ff267b4e4fc9e4"
+    }
+  ]
+}
