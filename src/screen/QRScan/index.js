@@ -6,21 +6,22 @@ import {
   Image,
   TextInput,
   SafeAreaView,
-} from 'react-native';
-import React, {useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
-import Hyperlink from 'react-native-hyperlink';
-import tw from 'twrnc';
+} from "react-native";
+import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import Hyperlink from "react-native-hyperlink";
+import tw from "twrnc";
 import {
   ChevronLeftIcon,
   CameraIcon,
   QrCodeIcon,
-} from 'react-native-heroicons/outline';
-import QRCodeScanner from 'react-native-qrcode-scanner';
+} from "react-native-heroicons/outline";
+import QRCodeScanner from "react-native-qrcode-scanner";
+
 // import { RNCamera } from "react-native-camera";
 const QRScan = () => {
   const navigation = useNavigation();
-  const [data, setData] = useState('');
+  const [data, setData] = useState("");
   const [status, setStatus] = useState(false);
 
   return (
@@ -36,13 +37,14 @@ const QRScan = () => {
         </View>
 
         {/* <Text style={tw`text-white p-5 m-2`}>{data}</Text> */}
-        <Hyperlink linkDefault={true} linkStyle={{color: 'white'}}>
+        <Hyperlink linkDefault={true} linkStyle={{ color: "white" }}>
           <Text style={tw`text-white  pl-6 flex `}>Kết quả:</Text>
           <Text
             style={tw`text-white p-5 `}
             selectable={true}
-            selectionColor="orange">
-            {' '}
+            selectionColor="orange"
+          >
+            {/* {' '} */}
             {data}
           </Text>
         </Hyperlink>
@@ -51,10 +53,11 @@ const QRScan = () => {
         <View style={tw`mt-21`}>
           {status ? (
             <View
-              style={tw`bg-white mx-3 h-[90%] rounded-3xl p-2 flex justify-center items-center`}>
+              style={tw`bg-white mx-3 h-[90%] rounded-3xl p-2 flex justify-center items-center`}
+            >
               <QRCodeScanner
                 style={tw``}
-                onRead={({data}) => {
+                onRead={({ data }) => {
                   setData(data);
                   setStatus(false);
                 }}
@@ -65,7 +68,7 @@ const QRScan = () => {
                 topContent={
                   <View>
                     <Text style={tw`text-white p-5 m-2`}>
-                      Please move your camera {'\n'} over the QR Code
+                      Please move your camera {"\n"} over the QR Code
                     </Text>
                   </View>
                 }
@@ -78,20 +81,22 @@ const QRScan = () => {
             </View>
           ) : (
             <View
-              style={tw`bg-white mx-3 h-[90%] rounded-3xl p-2 flex justify-around items-center content-around`}>
+              style={tw`bg-white mx-3 h-[90%] rounded-3xl p-2 flex justify-around items-center content-around`}
+            >
               <View style={tw`flex items-center`}>
                 <CameraIcon style={tw`text-blue-500`} />
                 <Text style={tw`text-center text-blue-800`}>
-                  Please move your camera {'\n'} over the QR Code
+                  Please move your camera {"\n"} over the QR Code
                 </Text>
               </View>
               <QrCodeIcon style={tw`text-blue-300 `} size={200} />
               <TouchableOpacity
                 onPress={() => {
                   setStatus(true);
-                  setData('');
+                  setData("");
                 }}
-                style={tw`border p-2 rounded-lg border-blue-400`}>
+                style={tw`border p-2 rounded-lg border-blue-400`}
+              >
                 <View style={tw`flex-row `}>
                   <CameraIcon style={tw`text-blue-500`} />
 

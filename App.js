@@ -2,9 +2,11 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Welcome, Login, Signup, Home, QRScan, Api } from "./screens";
+
 import { Provider as PaperProvider } from "react-native-paper";
-import BottomNav from "./screens/BottomNav";
+import { Api, Home, Login, QRScan, Signup, Welcome } from "./src";
+import MainLayout from "./src/MainLayout";
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -43,8 +45,8 @@ export default function App() {
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name="BottomNav"
-            component={BottomNav}
+            name="MainLayout"
+            component={MainLayout}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

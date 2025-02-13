@@ -1,18 +1,19 @@
 /* eslint-disable react-native/no-inline-styles */
+/* eslint-disable quotes */
 import {
-  SafeAreaView,
-  Image,
   Text,
-  TouchableOpacity,
   View,
+  TouchableOpacity,
+  Image,
   TextInput,
+  SafeAreaView,
 } from "react-native";
 import React from "react";
-
 import { useNavigation } from "@react-navigation/native";
+
 import tw from "twrnc";
 import { ChevronLeftIcon } from "react-native-heroicons/outline";
-const Login = () => {
+const Signup = () => {
   const navigation = useNavigation();
   return (
     <View style={tw`flex-1 bg-blue-600 `}>
@@ -21,11 +22,11 @@ const Login = () => {
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <ChevronLeftIcon style={tw`text-white `} />
           </TouchableOpacity>
-          <View style={tw`text-white flex  justify-center pl-2`}>
-            <Text style={tw`text-white font-bold`}>Login</Text>
+          <View style={tw`text-white flex  justify-center pl-1`}>
+            <Text style={tw`text-white font-bold`}>SignUp</Text>
           </View>
         </View>
-        <View style={tw`flex-row justify-center -m-3`}>
+        <View style={tw`flex-row justify-center -m-5`}>
           <Image
             source={require("../../assets/image/lock.png")}
             style={{ width: 200, height: 200 }}
@@ -41,7 +42,7 @@ const Login = () => {
         <View style={tw`form my-2`}>
           <Text style={tw`text-gray-700 ml-4 mb-2 `}>Email Address</Text>
           <TextInput
-            style={tw`p-3 bg-gray-100 text-gray-700 rounded-xl mb-3`}
+            style={tw`p-3 bg-gray-100 text-gray-700 rounded-2xl mb-3`}
             placeholder="Email Address"
           />
           <Text style={tw`text-gray-700 ml-4 mb-2 `}>Password</Text>
@@ -58,7 +59,7 @@ const Login = () => {
           </TouchableOpacity>
           <TouchableOpacity
             style={tw`py-3 bg-yellow-400 rounded-xl`}
-            onPress={() => navigation.navigate("BottomNav")}
+            onPress={() => navigation.goBack()}
           >
             <Text style={tw`font-xl  font-bold text-center`}>Login</Text>
           </TouchableOpacity>
@@ -67,4 +68,4 @@ const Login = () => {
     </View>
   );
 };
-export default Login;
+export default Signup;
