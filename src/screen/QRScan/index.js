@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import {
   Text,
   View,
@@ -27,11 +26,11 @@ const QRScan = () => {
   return (
     <View style={tw`flex-1 bg-blue-600  content-between`}>
       <SafeAreaView style={tw`flex`}>
-        <View style={tw`flex-row justify-start p-2 `}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
+        <View style={tw`flex-row justify-start p-2 pl-8 `}>
+          {/* <TouchableOpacity onPress={() => navigation.goBack()}>
             <ChevronLeftIcon style={tw`text-white `} />
-          </TouchableOpacity>
-          <View style={tw`text-white flex  justify-center pl-1`}>
+          </TouchableOpacity> */}
+          <View style={tw`text-white flex  justify-center pl-8 py-3`}>
             <Text style={tw`text-white font-bold`}>Scan QR Code</Text>
           </View>
         </View>

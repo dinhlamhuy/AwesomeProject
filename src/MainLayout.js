@@ -2,9 +2,18 @@
 /* eslint-disable prettier/prettier */
 
 import React, { useEffect, useRef } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+} from "@react-navigation/drawer";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as Animatable from "react-native-animatable";
 import Icon from "./components/Icons";
@@ -88,7 +97,15 @@ const TabButton = ({ item, onPress, accessibilityState }) => {
 const BottomTabNavigator = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ position: "absolute", top: 10, left: 10, zIndex: 10, color:'white' }}>
+      <View
+        style={{
+          position: "absolute",
+          top: 10,
+          left: 10,
+          zIndex: 10,
+          color: "white",
+        }}
+      >
         <TouchableOpacity onPress={() => navigation.openDrawer()} style={{}}>
           <Icon type="HomeIcon" color={Colors.primary} size={28} />
         </TouchableOpacity>
@@ -124,43 +141,74 @@ const BottomTabNavigator = ({ navigation }) => {
 
 const CustomDrawerContent = ({ navigation }) => {
   return (
-    <View style={{ flex: 1, padding: 20 }}>
-      <TouchableOpacity onPress={() => { 
-        navigation.closeDrawer(); 
-        navigation.navigate("HomeTabs", { screen: "Home" });
-      }}>
-        <Text>🏠 Trang Chủ</Text>
-      </TouchableOpacity>
+    <View style={{ flex: 1, backgroundColor: "#8200d6" }}>
+      <DrawerContentScrollView>
+        <ImageBackground
+          source={require("./assets/image/lock.png")}
+          style={{ paddingTop: 30, paddingBottom: 30, height: 150 }}
+        ></ImageBackground>
+        <View
+          style={{ flex: 1, padding: 20, backgroundColor: "#fff", height: 800 }}
+        >
+          <TouchableOpacity
+            onPress={() => {
+              navigation.closeDrawer();
+              navigation.navigate("HomeTabs", { screen: "Home" });
+            }}
+          >
+            <Text>Trang Chủ</Text>
+          </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => { 
-        navigation.closeDrawer(); 
-        navigation.navigate("Search"); 
-      }}>
-        <Text>🔍 Tìm Kiếm</Text>
-      </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.closeDrawer();
+              navigation.navigate("Search");
+            }}
+          >
+            <Text>Tìm Kiếm</Text>
+          </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => { 
-        navigation.closeDrawer(); 
-        navigation.navigate("Account"); 
-      }}>
-        <Text>👤 Hồ Sơ</Text>
-      </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.closeDrawer();
+              navigation.navigate("Account");
+            }}
+          >
+            <Text>Hồ Sơ</Text>
+          </TouchableOpacity>
+        </View>
+      </DrawerContentScrollView>
+      <View style={{ backgroundColor: "#fff", padding: 20 }}>
+      
+        <TouchableOpacity onPress={() => {}} style={{paddingVertical: 15}}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            {/* <Ionicons name="exit-outline" size={22} /> */}
+            <Text
+              style={{
+                fontSize: 15,
+                fontFamily: 'Roboto-Medium',
+                marginLeft: 5,
+              }}>
+              Sign Out
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
 
-
 export default function MainLayout() {
   return (
-    <Drawer.Navigator screenOptions={{ headerShown: false }}
-    drawerContent={(props) => <CustomDrawerContent {...props} />}
+    <Drawer.Navigator
+      screenOptions={{ headerShown: false,gestureEnabled: true }}
+      drawerContent={(props) => <CustomDrawerContent {...props} />}
     >
       <Drawer.Screen
         name="HomeTabs"
         component={BottomTabNavigator}
         options={{ title: "Home" }}
       />
-  
     </Drawer.Navigator>
   );
 }
