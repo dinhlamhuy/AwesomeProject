@@ -1,8 +1,11 @@
+/* eslint-disable react/no-unstable-nested-components */
+/* eslint-disable react/self-closing-comp */
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable quotes */
-/* eslint-disable prettier/prettier */
 
 import React, { useEffect, useRef } from "react";
 import {
+  Alert,
   ImageBackground,
   StyleSheet,
   Text,
@@ -20,7 +23,8 @@ import Icon from "./components/Icons";
 import Colors from "./constants/Colors";
 import Home from "./screen/Home";
 import QRScan from "./screen/QRScan";
-
+import tw from "twrnc";
+import SettingsScreen from "./screen/Settings";
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -36,7 +40,7 @@ const TabArr = [
   {
     route: "Like",
     label: "Like",
-    type: "BellIcon",
+    type: "UserIcon",
     activeIcon: "heart-plus",
     inActiveIcon: "heart-plus-outline",
     component: QRScan,
@@ -44,7 +48,7 @@ const TabArr = [
   {
     route: "Search",
     label: "Search",
-    type: "HomeIcon",
+    type: "BellIcon",
     activeIcon: "timeline-plus",
     inActiveIcon: "timeline-plus-outline",
     component: QRScan,
@@ -52,10 +56,10 @@ const TabArr = [
   {
     route: "Account",
     label: "Account",
-    type: "UserIcon",
+    type: "Cog6ToothIcon",
     activeIcon: "user-circle",
     inActiveIcon: "user-circle-o",
-    component: QRScan,
+    component: SettingsScreen,
   },
 ];
 
@@ -101,23 +105,41 @@ const BottomTabNavigator = ({ navigation }) => {
         style={{
           position: "absolute",
           top: 10,
-          left: 10,
+          // left: 10,
+          // right: 10,
+          paddingHorizontal: 10,
           zIndex: 10,
           color: "white",
+          display: "flex",
+          width: "100%",
+          justifyContent: "space-between",
+          flexDirection: "row",
+          alignItems: "center",
         }}
       >
-        <TouchableOpacity onPress={() => navigation.openDrawer()} style={{}}>
-          <Icon type="HomeIcon" color={Colors.primary} size={28} />
+        <TouchableOpacity onPress={() => navigation.openDrawer()}>
+          <Icon type="Bars3BottomLeftIcon" color={Colors.dark} size={28} />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => Alert.alert("Đây là thông báo")}
+          // style={tw`p-1 ml-4 rounded-lg bg-gray-100 border border-gray-300`}
+        >
+          <Icon type="BellIcon" color={"#18181B"} />
         </TouchableOpacity>
       </View>
+
       <Tab.Navigator
         screenOptions={{
           headerShown: false,
           tabBarStyle: {
             height: 60,
             position: "absolute",
-            margin: 5,
-            borderRadius: 9,
+            backgroundColor: "#000000",
+            opacity: 0.95,
+            margin: 0,
+            bottom: 0,
+            borderTopEndRadius: 5,
+            borderTopLeftRadius: 5,
             justifyContent: "center",
             alignItems: "center",
           },
@@ -179,16 +201,16 @@ const CustomDrawerContent = ({ navigation }) => {
         </View>
       </DrawerContentScrollView>
       <View style={{ backgroundColor: "#fff", padding: 20 }}>
-      
-        <TouchableOpacity onPress={() => {}} style={{paddingVertical: 15}}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <TouchableOpacity onPress={() => {}} style={{ paddingVertical: 15 }}>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
             {/* <Ionicons name="exit-outline" size={22} /> */}
             <Text
               style={{
                 fontSize: 15,
-                fontFamily: 'Roboto-Medium',
+                fontFamily: "Roboto-Medium",
                 marginLeft: 5,
-              }}>
+              }}
+            >
               Sign Out
             </Text>
           </View>
@@ -201,7 +223,7 @@ const CustomDrawerContent = ({ navigation }) => {
 export default function MainLayout() {
   return (
     <Drawer.Navigator
-      screenOptions={{ headerShown: false,gestureEnabled: true }}
+      screenOptions={{ headerShown: false, gestureEnabled: true }}
       drawerContent={(props) => <CustomDrawerContent {...props} />}
     >
       <Drawer.Screen

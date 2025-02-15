@@ -1,20 +1,30 @@
+/* eslint-disable react/no-unstable-nested-components */
+/* eslint-disable react/self-closing-comp */
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable quotes */
-/* eslint-disable prettier/prettier */
 
 import React, { useEffect, useRef } from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import {
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-// import { createDrawerNavigator } from "@react-navigation/drawer";
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+} from "@react-navigation/drawer";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as Animatable from "react-native-animatable";
 import Icon from "./components/Icons";
 import Colors from "./constants/Colors";
 import Home from "./screen/Home";
 import QRScan from "./screen/QRScan";
-// import 'react-native-reanimated';
-// import 'react-native-gesture-handler';
+
 const Tab = createBottomTabNavigator();
-// const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator();
 
 const TabArr = [
   {
@@ -86,15 +96,30 @@ const TabButton = ({ item, onPress, accessibilityState }) => {
   );
 };
 
-const BottomTabNavigator = () => {
+const BottomTabNavigator = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
+      <View
+        style={{
+          position: "absolute",
+          top: 10,
+          left: 10,
+          zIndex: 10,
+          color: "white",
+        }}
+      >
+        <TouchableOpacity onPress={() => navigation.openDrawer()} style={{}}>
+          <Icon type="HomeIcon" color={Colors.primary} size={28} />
+        </TouchableOpacity>
+      </View>
       <Tab.Navigator
         screenOptions={{
           headerShown: false,
           tabBarStyle: {
             height: 60,
             position: "absolute",
+            // backgroundColor: "#000000",
+            opacity: 0.3,
             margin: 5,
             borderRadius: 9,
             justifyContent: "center",
@@ -118,44 +143,77 @@ const BottomTabNavigator = () => {
   );
 };
 
+const CustomDrawerContent = ({ navigation }) => {
+  return (
+    <View style={{ flex: 1, backgroundColor: "#8200d6" }}>
+      <DrawerContentScrollView>
+        <ImageBackground
+          source={require("./assets/image/lock.png")}
+          style={{ paddingTop: 30, paddingBottom: 30, height: 150 }}
+        ></ImageBackground>
+        <View
+          style={{ flex: 1, padding: 20, backgroundColor: "#fff", height: 800 }}
+        >
+          <TouchableOpacity
+            onPress={() => {
+              navigation.closeDrawer();
+              navigation.navigate("HomeTabs", { screen: "Home" });
+            }}
+          >
+            <Text>Trang Chủ</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => {
+              navigation.closeDrawer();
+              navigation.navigate("Search");
+            }}
+          >
+            <Text>Tìm Kiếm</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => {
+              navigation.closeDrawer();
+              navigation.navigate("Account");
+            }}
+          >
+            <Text>Hồ Sơ</Text>
+          </TouchableOpacity>
+        </View>
+      </DrawerContentScrollView>
+      <View style={{ backgroundColor: "#fff", padding: 20 }}>
+        <TouchableOpacity onPress={() => {}} style={{ paddingVertical: 15 }}>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            {/* <Ionicons name="exit-outline" size={22} /> */}
+            <Text
+              style={{
+                fontSize: 15,
+                fontFamily: "Roboto-Medium",
+                marginLeft: 5,
+              }}
+            >
+              Sign Out
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
+
 export default function MainLayout() {
   return (
-    // <Drawer.Navigator screenOptions={{ headerShown: false }}>
-    //   <Drawer.Screen
-    //     name="HomeTabs"
-    //     component={BottomTabNavigator}
-    //     options={{ title: "Home" }}
-    //   />
-    // </Drawer.Navigator>
-    <SafeAreaView style={{ flex: 1 }}>
-    <Tab.Navigator
-      screenOptions={{
-        headerShown: false,
-        tabBarStyle: {
-          height: 60,
-          position: "absolute",
-          margin: 5,
-          borderRadius: 9,
-          justifyContent: "center",
-          alignItems: "center",
-        },
-      }}
+    <Drawer.Navigator
+      screenOptions={{ headerShown: false, gestureEnabled: true }}
+      drawerContent={(props) => <CustomDrawerContent {...props} />}
     >
-      {TabArr.map((item, index) => (
-        <Tab.Screen
-          key={index}
-          name={item.route}
-          component={item.component}
-          options={{
-            tabBarShowLabel: false,
-            tabBarButton: (props) => <TabButton {...props} item={item} />,
-          }}
-        />
-      ))}
-    </Tab.Navigator>
-  </SafeAreaView>
-
-
+      <Drawer.Screen
+        name="HomeTabs"
+        component={BottomTabNavigator}
+        options={{ title: "Home" }}
+      />
+    </Drawer.Navigator>
   );
 }
 
@@ -164,6 +222,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    height: 60,
+    height: 10,
+    // backgroundColor: "#000000",
   },
 });

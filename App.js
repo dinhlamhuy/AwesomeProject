@@ -4,7 +4,15 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { Provider as PaperProvider } from "react-native-paper";
-import { Api, Home, Login, QRScan, Signup, Welcome } from "./src";
+import {
+  Api,
+  Home,
+  Login,
+  QRScan,
+  Signup,
+  Welcome,
+  SettingsScreen,
+} from "./src";
 import MainLayout from "./src/MainLayout";
 
 const Stack = createNativeStackNavigator();
@@ -47,6 +55,11 @@ export default function App() {
           <Stack.Screen
             name="MainLayout"
             component={MainLayout}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="SettingsScreen"
+            component={SettingsScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

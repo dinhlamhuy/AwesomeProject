@@ -1,5 +1,4 @@
 /* eslint-disable quotes */
-/* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 import {
   SafeAreaView,
@@ -62,7 +61,7 @@ const Login = () => {
             style={tw`py-3 bg-yellow-400 rounded-xl`}
             onPress={() => navigation.navigate("MainLayout")}
           >
-            <Text style={tw`font-xl  font-bold text-center`}>Login</Text>
+            <Text style={tw`  font-bold text-center`}>Login</Text>
           </TouchableOpacity>
         </View>
       </View>
