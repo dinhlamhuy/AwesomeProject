@@ -12,6 +12,7 @@ import {
   Signup,
   Welcome,
   SettingsScreen,
+  ProfileScreen,
 } from "./src";
 import MainLayout from "./src/MainLayout";
 
@@ -60,6 +61,11 @@ export default function App() {
           <Stack.Screen
             name="SettingsScreen"
             component={SettingsScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ProfileScreen"
+            component={ProfileScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

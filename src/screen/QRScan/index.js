@@ -1,3 +1,6 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable quotes */
+/* eslint-disable no-shadow */
 import {
   Text,
   View,
@@ -10,16 +13,12 @@ import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import Hyperlink from "react-native-hyperlink";
 import tw from "twrnc";
-import {
-  ChevronLeftIcon,
-  CameraIcon,
-  QrCodeIcon,
-} from "react-native-heroicons/outline";
+import { CameraIcon, QrCodeIcon } from "react-native-heroicons/outline";
 import QRCodeScanner from "react-native-qrcode-scanner";
 
 // import { RNCamera } from "react-native-camera";
 const QRScan = () => {
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
   const [data, setData] = useState("");
   const [status, setStatus] = useState(false);
 
@@ -49,10 +48,10 @@ const QRScan = () => {
         </Hyperlink>
       </SafeAreaView>
       <View>
-        <View style={tw`mt-21`}>
+        <View style={tw`mt-12`}>
           {status ? (
             <View
-              style={tw`bg-white mx-3 h-[90%] rounded-3xl p-2 flex justify-center items-center`}
+              style={tw`bg-white mx-3 h-[85%] rounded-3xl p-2 flex justify-center items-center`}
             >
               <QRCodeScanner
                 style={tw``}

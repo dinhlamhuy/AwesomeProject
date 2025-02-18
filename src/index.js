@@ -6,5 +6,15 @@ import Home from "./screen/Home";
 import QRScan from "./screen/QRScan";
 import Api from "./screen/Api";
 import SettingsScreen from "./screen/Settings";
+import ProfileScreen from "./screen/Profile";
 
-export { Login, Welcome, Home, Signup, QRScan, Api, SettingsScreen };
+export {
+  Login,
+  Welcome,
+  Home,
+  Signup,
+  QRScan,
+  Api,
+  SettingsScreen,
+  ProfileScreen,
+};

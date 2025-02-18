@@ -18,6 +18,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { BellIcon } from "react-native-heroicons/outline";
 import { windowWidth } from "../../utils/Dimensions";
+import { FlatList } from "react-native-gesture-handler";
 const carousel_data = [
   {
     id: 1,
@@ -28,7 +29,7 @@ const carousel_data = [
   },
   {
     id: 2,
-    title: "",
+    title: "dấdgfsdfsd",
     desc: "",
     image: "https://example.com/image2.jpg",
     bgColor: "#E5E7EB",
@@ -59,11 +60,11 @@ export default function Home() {
   const scrollY = useRef(new Animated.Value(0)).current;
   const HEADER_HEIGHT = 72; // Chiều cao header thực tế
 
-  const headerTranslateY = scrollY.interpolate({
-    inputRange: [0, HEADER_HEIGHT], // Khi cuộn từ 0 đến HEADER_HEIGHT px
-    outputRange: [0, -HEADER_HEIGHT], // Header di chuyển lên -HEADER_HEIGHT px
-    extrapolate: "clamp", // Không đi quá giới hạn
-  });
+  // const headerTranslateY = scrollY.interpolate({
+  //   inputRange: [0, HEADER_HEIGHT], // Khi cuộn từ 0 đến HEADER_HEIGHT px
+  //   outputRange: [0, -HEADER_HEIGHT], // Header di chuyển lên -HEADER_HEIGHT px
+  //   extrapolate: "clamp", // Không đi quá giới hạn
+  // });
 
   return (
     <View style={tw`flex-1`}>
@@ -91,7 +92,7 @@ export default function Home() {
           // scrollEventThrottle={16} // Giúp animation mượt hơn
         >
           {/* #region Carousel Setion */}
-          <ScrollView
+          {/* <ScrollView
             horizontal
             pagingEnabled // Cuộn từng card một
             snapToInterval={windowWidth * 0.9 * 0.9}
@@ -110,13 +111,26 @@ export default function Home() {
                   {item.title}
                 </Text>
                 <Text>{item.desc}</Text>
-                {/* <Image
-                  source={{ uri: item.image }}
-                  style={{ width: 150, height: 100, marginTop: 10 }}
-                /> */}
               </View>
             ))}
-          </ScrollView>
+          </ScrollView> */}
+          <FlatList
+            data={carousel_data}
+            keyExtractor={(item) => item.id}
+            horizontal
+            pagingEnabled
+            showsHorizontalScrollIndicator={false}
+            snapToInterval={windowWidth * 0.9 * 0.9} // Khoảng cách cuộn từng item
+            decelerationRate="fast"
+            renderItem={({ item }) => (
+              <View style={[styles.divCard, { backgroundColor: item.bgColor }]}>
+                <Text style={{ fontWeight: "bold", fontSize: 16 }}>
+                  {item.title}
+                </Text>
+                <Text>{item.desc}</Text>
+              </View>
+            )}
+          />
 
           {/* #endregion */}
           <View style={tw` pt-6  `}>

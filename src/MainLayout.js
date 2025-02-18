@@ -21,10 +21,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import * as Animatable from "react-native-animatable";
 import Icon from "./components/Icons";
 import Colors from "./constants/Colors";
-import Home from "./screen/Home";
-import QRScan from "./screen/QRScan";
+import { Home, QRScan, SettingsScreen, ProfileScreen } from "../src";
+
 import tw from "twrnc";
-import SettingsScreen from "./screen/Settings";
+
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -43,12 +43,12 @@ const TabArr = [
     type: "UserIcon",
     activeIcon: "heart-plus",
     inActiveIcon: "heart-plus-outline",
-    component: QRScan,
+    component: ProfileScreen,
   },
   {
     route: "Search",
     label: "Search",
-    type: "BellIcon",
+    type: "QrCodeIcon",
     activeIcon: "timeline-plus",
     inActiveIcon: "timeline-plus-outline",
     component: QRScan,
