@@ -7,7 +7,7 @@ import QRScan from "./screen/QRScan";
 import Api from "./screen/Api";
 import SettingsScreen from "./screen/Settings";
 import ProfileScreen from "./screen/Profile";
-
+import PokemonInfo from "./screen/PokemonInfo";
 export {
   Login,
   Welcome,
@@ -17,4 +17,5 @@ export {
   Api,
   SettingsScreen,
   ProfileScreen,
+  PokemonInfo,
 };
