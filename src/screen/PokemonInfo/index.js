@@ -144,7 +144,7 @@ const PokemonInfo = () => {
           }}
         >
           <ChevronLeftIcon
-            style={tw`text-white text-xl font-bold absolute top-2 left-2 `}
+            style={tw`text-white text-xl font-bold absolute top-6 left-3 `}
           />
         </TouchableOpacity>
         <ScrollView style={tw`  text-white`}>
