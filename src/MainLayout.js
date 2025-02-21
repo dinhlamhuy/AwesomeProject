@@ -21,13 +21,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import * as Animatable from "react-native-animatable";
 import Icon from "./components/Icons";
 import Colors from "./constants/Colors";
-import {
-  Home,
-  QRScan,
-  PokemonInfo,
-  SettingsScreen,
-  ProfileScreen,
-} from "../src";
+import { Home, QRScan, SettingsScreen, ProfileScreen, Pokemon } from "../src";
 
 import tw from "twrnc";
 
@@ -57,7 +51,7 @@ const TabArr = [
     type: "QrCodeIcon",
     activeIcon: "timeline-plus",
     inActiveIcon: "timeline-plus-outline",
-    component: PokemonInfo,
+    component: Pokemon,
   },
   {
     route: "Account",

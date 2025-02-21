@@ -8,6 +8,7 @@ import Api from "./screen/Api";
 import SettingsScreen from "./screen/Settings";
 import ProfileScreen from "./screen/Profile";
 import PokemonInfo from "./screen/PokemonInfo";
+import Pokemon from "./screen/Pokemon";
 export {
   Login,
   Welcome,
@@ -18,4 +19,5 @@ export {
   SettingsScreen,
   ProfileScreen,
   PokemonInfo,
+  Pokemon,
 };

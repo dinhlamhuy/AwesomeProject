@@ -39,7 +39,7 @@ const Login = () => {
           { borderTopLeftRadius: 50, borderTopRightRadius: 50 },
         ]}
       >
-        <View style={tw`form my-2`}>
+        <View style={tw` my-2`}>
           <Text style={tw`text-gray-700 ml-4 mb-2 `}>Email Address</Text>
           <TextInput
             style={tw`p-3 bg-gray-100 text-gray-700 rounded-xl mb-3`}

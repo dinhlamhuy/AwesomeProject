@@ -29,7 +29,9 @@ const QRScan = () => {
           {/* <TouchableOpacity onPress={() => navigation.goBack()}>
             <ChevronLeftIcon style={tw`text-white `} />
           </TouchableOpacity> */}
-          <View style={tw`text-white flex  justify-center pl-8 py-3`}>
+          <View
+            style={tw`text-white flex  justify-center pl-8 py-3`}
+          >
             <Text style={tw`text-white font-bold`}>Scan QR Code</Text>
           </View>
         </View>

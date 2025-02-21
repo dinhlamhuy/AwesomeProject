@@ -6,7 +6,7 @@ import { Text, View } from "react-native";
 import tw from "twrnc";
 const renderBars = (score) => {
   return (
-    <View style={tw`flex-row flex-2 gap-1.5`}>
+    <View style={tw`flex-row flex-2 gap-1 pl-2`}>
       {Array.from({ length: 15 }).map((_, i) => (
         <View
           key={i}
@@ -43,7 +43,7 @@ const Status = ({ dataStats }) => {
         const score = convertTo15Scale(item.base_stat, maxPing[item.stat.name]);
 
         return (
-          <View style={tw`flex-row items-center justify-between py-2 px-1`}>
+          <View style={tw`flex-row items-center justify-between py-2  px-4`}>
             <Text style={tw`uppercase text-gray-200 text-md flex-1`}>
               {item.stat?.name.replace("special-", "sp.")}
             </Text>

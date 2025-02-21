@@ -1,9 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 /* eslint-disable quotes */
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable react/self-closing-comp */
 import {
+  ActivityIndicator,
   Image,
   ImageBackground,
   ScrollView,
@@ -24,10 +26,12 @@ import Evolutions from "../../components/Pokemon/Evolutions";
 import Location from "../../components/Pokemon/Location";
 import Moves from "../../components/Pokemon/Moves";
 import Status from "../../components/Pokemon/Status";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { ChevronLeftIcon } from "react-native-heroicons/outline";
 
 function TabBar({ navigationState, position, jumpTo }) {
   return (
-    <View style={tw`flex-row justify-around pb-2`}>
+    <View style={tw`flex-row  justify-around pb-2`}>
       {navigationState.routes.map((route, i) => {
         const isActive = navigationState.index === i;
         return (
@@ -96,35 +100,60 @@ function TabViewExample({ data }) {
   );
 }
 const PokemonInfo = () => {
-  const [data, setData] = useState(datapokemon);
+  const navigation = useNavigation();
+  const route = useRoute();
+  const { id } = route.params;
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
   const img = data?.sprites?.other?.home?.front_default;
 
   const FetchData = async () => {
-    await axios
-      .get("https://pokeapi.co/api/v2/pokemon/1")
-      .then((reponse) => {
-        setData(reponse.data);
-      })
-      .catch(() => {
-        console.log("Không gọi được API");
-      });
+    try {
+      const response = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon/${id}`
+      );
+      setData(response.data);
+    } catch (error) {
+      console.log("Không gọi được API");
+    } finally {
+      setLoading(false); // Kết thúc trạng thái loading
+    }
   };
   useEffect(() => {
     FetchData();
-  }, []);
+  }, [id]);
+
+  if (loading) {
+    return (
+      <View style={tw`flex-1 justify-center items-center bg-black`}>
+        <ActivityIndicator size="large" color="#FFD700" />
+        <Text style={tw`text-white mt-4`}>Đang tải dữ liệu...</Text>
+      </View>
+    );
+  }
   return (
-    <View style={tw`flex-1 pb-5 `}>
+    <View style={tw`flex-1   `}>
       <ImageBackground
         source={typePokemon[data?.types[0].type.name].img} // Thay ảnh nền ở đây
         style={tw`flex-1`}
       >
+        <TouchableOpacity
+          style={tw` z-10`}
+          onPress={() => {
+            navigation.goBack();
+          }}
+        >
+          <ChevronLeftIcon
+            style={tw`text-white text-xl font-bold absolute top-2 left-2 `}
+          />
+        </TouchableOpacity>
         <ScrollView style={tw`  text-white`}>
           <Text
-            style={tw`capitalize  tracking-wider text-center pt-8 font-bold text-6 text-white`}
+            style={tw`capitalize  tracking-wider text-center pt-4 font-bold text-6 text-white`}
           >
             {"#00" + data?.id}
           </Text>
-          <View style={tw`flex justify-center items-center -mt-12 z-10`}>
+          <View style={tw`flex justify-center items-center -mt-4 z-10`}>
             <Image
               source={{ uri: data?.sprites?.other?.home?.front_default }}
               style={{ height: 300, width: 300 }}

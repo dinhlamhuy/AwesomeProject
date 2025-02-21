@@ -14,6 +14,7 @@ import {
   SettingsScreen,
   ProfileScreen,
   PokemonInfo,
+  Pokemon,
 } from "./src";
 import MainLayout from "./src/MainLayout";
 
@@ -72,6 +73,12 @@ export default function App() {
           <Stack.Screen
             name="PokemonInfo"
             component={PokemonInfo}
+            options={{ headerShown: false }}
+            initialParams={{ id: 1 }}
+          />
+          <Stack.Screen
+            name="Pokemon"
+            component={Pokemon}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
