@@ -68,12 +68,12 @@ export default function Home() {
 
   return (
     <View style={tw`flex-1`}>
-      <SafeAreaView style={tw`flex-1 bg-gray-100  pt-10 px-2`}>
+      <SafeAreaView style={tw`flex-1 bg-gray-100  bg-[#333]  pt-10 px-2`}>
         <View>
-          <Text style={tw`font-bold text-2xl py-1  text-gray-950 `}>
+          <Text style={tw`font-bold text-2xl py-1  text-white `}>
             Hi Huii !
           </Text>
-          <Text style={tw`text-gray-950`}>Chúc bạn một ngày tốt lành</Text>
+          <Text style={tw`text-white`}>Chúc bạn một ngày tốt lành</Text>
         </View>
         {/* Nội dung có thể cuộn */}
         <Animated.ScrollView
@@ -135,12 +135,15 @@ export default function Home() {
           {/* #endregion */}
           <View style={tw` pt-6  `}>
             <View style={tw`flex-row justify-between items-center`}>
-              <Text style={tw`font-bold text-[18px]`}>Categories</Text>
+              <Text style={tw`font-bold text-[18px] text-white`}>
+                Categories
+              </Text>
               <Text style={tw`text-blue-400`}>View All</Text>
             </View>
             <View style={tw`mt-3`}>
               <ScrollView
                 horizontal
+                showsHorizontalScrollIndicator={false}
                 // pagingEnabled // Cuộn từng card một
                 // snapToInterval={windowWidth * 0.9 * 0.9}
                 // showsHorizontalScrollIndicator={false}
@@ -159,12 +162,15 @@ export default function Home() {
           </View>
           <View style={tw` pt-7  `}>
             <View style={tw`flex-row justify-between items-center`}>
-              <Text style={tw`font-bold text-[18px]`}>Our Product</Text>
+              <Text style={tw`font-bold text-white text-[18px]`}>
+                Our Product
+              </Text>
               <Text style={tw`text-blue-400`}>View All</Text>
             </View>
             <View style={tw`mt-3`}>
               <ScrollView
                 horizontal
+                showsHorizontalScrollIndicator={false}
                 // pagingEnabled // Cuộn từng card một
                 // snapToInterval={windowWidth * 0.9 * 0.9}
                 // showsHorizontalScrollIndicator={false}
@@ -183,12 +189,15 @@ export default function Home() {
           </View>
           <View style={tw` pt-7  `}>
             <View style={tw`flex-row justify-between items-center`}>
-              <Text style={tw`font-bold text-[18px]`}>Our Product</Text>
+              <Text style={tw`font-bold text-[18px] text-white`}>
+                Our Product
+              </Text>
               <Text style={tw`text-blue-400`}>View All</Text>
             </View>
             <View style={tw`mt-3`}>
               <ScrollView
                 horizontal
+                showsHorizontalScrollIndicator={false}
                 // pagingEnabled // Cuộn từng card một
                 // snapToInterval={windowWidth * 0.9 * 0.9}
                 // showsHorizontalScrollIndicator={false}
@@ -207,12 +216,15 @@ export default function Home() {
           </View>
           <View style={tw` pt-7  `}>
             <View style={tw`flex-row justify-between items-center`}>
-              <Text style={tw`font-bold text-[18px]`}>Our Product</Text>
+              <Text style={tw`font-bold text-[18px] text-white`}>
+                Our Product
+              </Text>
               <Text style={tw`text-blue-400`}>View All</Text>
             </View>
             <View style={tw`mt-3`}>
               <ScrollView
                 horizontal
+                showsHorizontalScrollIndicator={false}
                 // pagingEnabled // Cuộn từng card một
                 // snapToInterval={windowWidth * 0.9 * 0.9}
                 // showsHorizontalScrollIndicator={false}

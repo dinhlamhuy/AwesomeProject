@@ -1,3 +1,7 @@
+/* eslint-disable react/self-closing-comp */
+/* eslint-disable curly */
+/* eslint-disable quotes */
+/* eslint-disable no-shadow */
 /* eslint-disable react-native/no-inline-styles */
 import React, { useEffect, useState } from "react";
 import { Text, View, Image, ActivityIndicator, ScrollView } from "react-native";
@@ -66,7 +70,7 @@ const Evolutions = ({ pokemonName }) => {
   if (loading) return <ActivityIndicator size="large" color="blue" />;
 
   return (
-    <ScrollView style={tw`pb-[220]`}>
+    <ScrollView style={tw`w-full`}>
       {evolutionChain.map((evo, index) => (
         <View
           key={index}
@@ -93,6 +97,7 @@ const Evolutions = ({ pokemonName }) => {
               {evo.types.map((itemType, index) => {
                 return (
                   <Text
+                    key={"ten2" + index}
                     style={[
                       tw` text-white border py-1 mb-2 px-4 text-md  rounded-lg text-[${
                         typePokemon[itemType.type.name].color
@@ -116,7 +121,7 @@ const Evolutions = ({ pokemonName }) => {
           </View>
         </View>
       ))}
-      <View style={tw`h-32`}></View>
+      {/* <View style={tw`h-18`}></View> */}
     </ScrollView>
   );
 };

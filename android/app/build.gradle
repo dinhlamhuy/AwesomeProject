@@ -84,13 +84,19 @@ android {
         missingDimensionStrategy 'react-native-camera', 'general'
     }
     signingConfigs {
-         release {
-            if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
-                storeFile file(MYAPP_UPLOAD_STORE_FILE)
-                storePassword MYAPP_UPLOAD_STORE_PASSWORD
-                keyAlias MYAPP_UPLOAD_KEY_ALIAS
-                keyPassword MYAPP_UPLOAD_KEY_PASSWORD
-            }
+        //  release {
+        //     if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
+        //         storeFile file(MYAPP_UPLOAD_STORE_FILE)
+        //         storePassword MYAPP_UPLOAD_STORE_PASSWORD
+        //         keyAlias MYAPP_UPLOAD_KEY_ALIAS
+        //         keyPassword MYAPP_UPLOAD_KEY_PASSWORD
+        //     }
+        // }
+        release {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file(rootProject.projectDir.toString() + '/app/debug.keystore')
+            storePassword 'android'
         }
         debug {
             storeFile file('debug.keystore')

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable quotes */
 /* eslint-disable react/react-in-jsx-scope */
@@ -14,7 +15,10 @@ import {
   ActivityIndicator,
 } from "react-native";
 import tw from "twrnc";
+import { windowWidth } from "../../utils/Dimensions";
 
+const numColumns = 3;
+const cardWidth = (windowWidth - 40) / numColumns;
 const Pokemon = () => {
   const navigation = useNavigation();
   const [data, setData] = useState([]);
@@ -51,10 +55,16 @@ const Pokemon = () => {
     const imgPo = imgPoke + item.id + ".png";
     return (
       <TouchableOpacity
-        style={tw`z-10`}
+        style={tw`z-10 `}
         onPress={() => navigation.navigate("PokemonInfo", { id: item.name })}
       >
-        <View style={[tw`flex h-46 w-32 border rounded m-1`, styles.card]}>
+        <View
+          style={[
+            tw`flex h-42 m-1 border rounded `,
+            styles.card,
+            { width: cardWidth },
+          ]}
+        >
           <ImageBackground
             source={require("../../assets/image/bg.jpg")}
             style={tw`flex-1`}
@@ -63,7 +73,7 @@ const Pokemon = () => {
             <View style={styles.blurOverlay} />
             <Image
               source={{ uri: imgPo }}
-              style={tw`h-36 w-32`}
+              style={tw`h-32 `}
               resizeMode="contain"
             />
             <Text style={tw`text-white text-center text-lg capitalize pt-1`}>
@@ -76,7 +86,14 @@ const Pokemon = () => {
   };
 
   return (
-    <View style={tw`pt-10 flex-1 bg-[#333] gap-3`}>
+    <View
+      style={[
+        tw`pt-10 flex-1 bg-[#333] px-1`,
+        {
+          width: windowWidth,
+        },
+      ]}
+    >
       <FlatList
         data={data}
         renderItem={renderItem}

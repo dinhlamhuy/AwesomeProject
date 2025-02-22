@@ -28,6 +28,7 @@ import Moves from "../../components/Pokemon/Moves";
 import Status from "../../components/Pokemon/Status";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { ChevronLeftIcon } from "react-native-heroicons/outline";
+import { windowHeight } from "../../utils/Dimensions";
 
 function TabBar({ navigationState, position, jumpTo }) {
   return (
@@ -138,14 +139,12 @@ const PokemonInfo = () => {
         style={tw`flex-1`}
       >
         <TouchableOpacity
-          style={tw` z-10`}
+          style={tw` z-10 h-12 w-18  absolute top-4 left-0  flex justify-center items-center`}
           onPress={() => {
             navigation.goBack();
           }}
         >
-          <ChevronLeftIcon
-            style={tw`text-white text-xl font-bold absolute top-6 left-3 `}
-          />
+          <ChevronLeftIcon size={32} style={tw`text-white font-bold  `} />
         </TouchableOpacity>
         <ScrollView style={tw`  text-white`}>
           <Text
@@ -167,6 +166,7 @@ const PokemonInfo = () => {
               {data?.types.map((itemType, index) => {
                 return (
                   <Text
+                    key={"ten" + index}
                     style={[
                       tw` text-white border py-1 mb-2 px-4 text-md  rounded-lg text-[${
                         typePokemon[itemType.type.name].color
@@ -190,8 +190,12 @@ const PokemonInfo = () => {
           </View>
           <View
             style={[
-              tw`min-h-[150]   -mt-32 pt-34`,
-              { borderRadius: 18, backgroundColor: "rgba(52, 28, 28, 0.6);" },
+              tw` flex-1 h-full  -mt-32 pt-34`,
+              {
+                borderRadius: 18,
+                backgroundColor: "rgba(52, 28, 28, 0.6);",
+                height: windowHeight,
+              },
             ]}
           >
             <TabViewExample data={data} />

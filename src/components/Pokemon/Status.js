@@ -4,9 +4,10 @@
 /* eslint-disable quotes */
 import { Text, View } from "react-native";
 import tw from "twrnc";
+import { windowWidth } from "../../utils/Dimensions";
 const renderBars = (score) => {
   return (
-    <View style={tw`flex-row flex-2 gap-1 pl-2`}>
+    <View style={tw`flex-row flex-2 gap-1 pl-2 w-full justify-center items-center`}>
       {Array.from({ length: 15 }).map((_, i) => (
         <View
           key={i}
@@ -38,14 +39,22 @@ const Status = ({ dataStats }) => {
   };
 
   return (
-    <View>
+    <View style={{ width: windowWidth }}>
       {dataStats.map((item, index) => {
         const score = convertTo15Scale(item.base_stat, maxPing[item.stat.name]);
 
         return (
-          <View style={tw`flex-row items-center justify-between py-2  px-4`}>
+          <View
+            style={[
+              tw`flex-row items-center justify-between py-2  px-4`,
+              { width: windowWidth },
+            ]}
+          >
             <Text style={tw`uppercase text-gray-200 text-md flex-1`}>
-              {item.stat?.name.replace("special-", "sp.")}
+              {item.stat?.name
+                .replace("special-", "sp. ")
+                .replace("attack", "atk")
+                .replace("defense", "def")}
             </Text>
             <Text style={tw`uppercase text-white font-bold text-lg w-12`}>
               {item.base_stat}

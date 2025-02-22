@@ -48,7 +48,7 @@ const TabArr = [
   {
     route: "Search",
     label: "Search",
-    type: "QrCodeIcon",
+    type: "CreditCardIcon",
     activeIcon: "timeline-plus",
     inActiveIcon: "timeline-plus-outline",
     component: Pokemon,
@@ -118,13 +118,13 @@ const BottomTabNavigator = ({ navigation }) => {
         }}
       >
         <TouchableOpacity onPress={() => navigation.openDrawer()}>
-          <Icon type="Bars3BottomLeftIcon" color={Colors.dark} size={28} />
+          <Icon type="Bars3BottomLeftIcon" color={Colors.light} size={28} />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => Alert.alert("Đây là thông báo")}
           // style={tw`p-1 ml-4 rounded-lg bg-gray-100 border border-gray-300`}
         >
-          <Icon type="BellIcon" color={"#18181B"} />
+          <Icon type="BellIcon" color={"#fff"} />
         </TouchableOpacity>
       </View>
 

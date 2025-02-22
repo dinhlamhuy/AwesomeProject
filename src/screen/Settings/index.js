@@ -1,3 +1,4 @@
+/* eslint-disable react/self-closing-comp */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable quotes */
@@ -10,13 +11,14 @@ import {
   Alert,
   ScrollView,
 } from "react-native";
-import {
-  ChevronDownIcon,
-  ChevronRightIcon,
-} from "react-native-heroicons/outline";
-import Icon from "../../components/Icons";
+// import {
+//   ChevronDownIcon,
+//   ChevronRightIcon,
+// } from "react-native-heroicons/outline";
+// import Icon from "../../components/Icons";
 import tw from "twrnc";
-import { windowHeight } from "../../utils/Dimensions";
+// import { windowHeight } from "../../utils/Dimensions";
+import DropdownItem from "../../components/DropdownItem";
 const menuSettings = [
   {
     tittle: "Edit Profile",
@@ -34,11 +36,6 @@ const menuSettings = [
       { tittle: "Change Email", icon: "mail" },
       { tittle: "Change Password", icon: "lock-closed" },
       { tittle: "Change Email", icon: "mail" },
-      { tittle: "Change Password", icon: "lock-closed" },
-      { tittle: "Change Email", icon: "mail" },
-      { tittle: "Change Password", icon: "lock-closed" },
-      { tittle: "Change Email", icon: "mail" },
-      { tittle: "Change Phone", icon: "phone" },
     ],
   },
 
@@ -90,96 +87,9 @@ const menuSettings = [
   },
 ];
 
-const DropdownItem = ({
-  title,
-  icon,
-  sl,
-  index,
-  children,
-  isSubDropdown,
-  handleFunction,
-}) => {
-  const [expanded, setExpanded] = useState(false);
-  const animatedHeight = useRef(new Animated.Value(0)).current;
-  const fadeAnim = useRef(new Animated.Value(0)).current;
-  const translateYAnim = useRef(new Animated.Value(50)).current;
-
-  useEffect(() => {
-    setTimeout(() => {
-      Animated.parallel([
-        Animated.timing(fadeAnim, {
-          toValue: 1,
-          duration: 900,
-          useNativeDriver: true,
-        }),
-        Animated.timing(translateYAnim, {
-          toValue: 0,
-          duration: 1000,
-          useNativeDriver: true,
-        }),
-      ]).start();
-    }, index * 200);
-  }, [translateYAnim, fadeAnim]);
-
-  const toggleDropdown = () => {
-    const toValue = expanded ? 0 : 45 * sl; // 100 là chiều cao tối đa, có thể chỉnh theo nội dung
-    Animated.timing(animatedHeight, {
-      toValue,
-      duration: 300, // Thời gian animation (300ms)
-      useNativeDriver: false,
-    }).start();
-
-    setExpanded(!expanded);
-  };
-
-  return (
-    <Animated.View
-      style={{
-        borderBottomWidth: 1,
-        borderBottomColor: "#ccc",
-        paddingVertical: 10,
-        opacity: fadeAnim,
-        transform: [{ translateY: translateYAnim }],
-      }}
-    >
-      <TouchableOpacity
-        onPress={isSubDropdown ? toggleDropdown : handleFunction}
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <View style={tw`flex-row items-center`}>
-          <Icon type={icon} color={"#445252"} />
-          <Text style={tw`text-[15px] pl-4 text-[#445252] font-bold`}>
-            {title}
-          </Text>
-        </View>
-        {isSubDropdown && (
-          <View>
-            {expanded ? (
-              <ChevronDownIcon size={18} color={"black"} />
-            ) : (
-              <ChevronRightIcon size={18} color={"black"} />
-            )}
-          </View>
-        )}
-      </TouchableOpacity>
-      {isSubDropdown && (
-        <Animated.View
-          style={{ height: animatedHeight, overflow: "hidden", marginTop: 5 }}
-        >
-          <View style={{ paddingLeft: 15 }}>{children}</View>
-        </Animated.View>
-      )}
-    </Animated.View>
-  );
-};
-
 const SettingsScreen = () => {
   return (
-    <View style={tw`flex-1 pb-14 `}>
+    <View style={tw`flex-1 pb-14  bg-[#333]`}>
       <ScrollView
         style={{
           padding: 20,
@@ -204,7 +114,7 @@ const SettingsScreen = () => {
             {item.subDropdown?.map((subItem, subIndex) => (
               <Text
                 key={subIndex}
-                style={tw` pl-8 font-bold py-3 bg-gray-300 mb-0.5`}
+                style={tw` pl-8 font-bold py-2 bg-gray-950 text-white rounded mb-0.5`}
               >
                 {subItem.tittle}
               </Text>

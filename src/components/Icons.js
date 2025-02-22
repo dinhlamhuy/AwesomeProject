@@ -9,6 +9,11 @@ import {
   LanguageIcon,
   ArrowRightStartOnRectangleIcon,
   QrCodeIcon,
+  PencilIcon,
+  CakeIcon,
+  EnvelopeIcon,
+  DevicePhoneMobileIcon,
+  CreditCardIcon,
 } from "react-native-heroicons/outline";
 export const Icons = {
   HomeIcon,
@@ -19,6 +24,11 @@ export const Icons = {
   LanguageIcon,
   ArrowRightStartOnRectangleIcon,
   QrCodeIcon,
+  PencilIcon,
+  CakeIcon,
+  EnvelopeIcon,
+  DevicePhoneMobileIcon,
+  CreditCardIcon,
 };
 
 const Icon = ({ type, color, size = 24, style }) => {
