@@ -67,8 +67,8 @@ const Pokemon = () => {
         >
           <ImageBackground
             source={require("../../assets/image/bg.jpg")}
-            style={tw`flex-1`}
-            resizeMode="cover"
+            style={tw`flex-1 bg-black`}
+            resizeMode="contain"
           >
             <View style={styles.blurOverlay} />
             <Image
