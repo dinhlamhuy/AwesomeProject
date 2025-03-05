@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cipher Wheel</title>
+    <style>
+      body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.cipher-wheel {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* overflow: hidden; */
+    user-select: none;
+}
+
+.inner-circle {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.letters {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    background-color: red;
+}
+
+.letter {
+    position: absolute;
+    transform-origin: center 200px; /* Bán kính vòng tròn */
+    font-size: 18px; /* Tăng kích thước chữ để dễ thấy hơn */
+    font-weight: bold;
+    color: #333;
+    /* Đảm bảo chữ luôn hiển thị ngay ngắn */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+    </style>
+  </head>
+  <body>
+    <div class="cipher-wheel" id="cipherWheel">
+      <!-- <div class="inner-circle"></div> -->
+      <div class="letters" id="letters"></div>
+    </div>
+    <script >
+     document.addEventListener('DOMContentLoaded', () => {
+    const lettersContainer = document.getElementById('letters');
+    const cipherWheel = document.getElementById('cipherWheel');
+    const alphabet =  'aáàảãạăắằẳẵặâấầẩẫậbcdđeéèẻẽẹêếềểễệghiíìỉĩịklmnoóòỏõọôốồổỗộơớờởỡợpqrstuúùủũụưứừửữựvxyýỳỷỹỵ';
+
+    // Tạo các chữ cái trên vòng tròn
+    for (let i = 0; i < alphabet.length; i++) {
+        const letter = document.createElement('div');
+        letter.className = 'letter';
+        letter.textContent = alphabet[i];
+        
+        // Tính toán vị trí góc và xoay
+        const angle = (i * (360 / alphabet.length)) * (Math.PI / 180);
+        const x = Math.cos(angle) * 200; // Bán kính 200px
+        const y = Math.sin(angle) * 200;
+        
+        // Đảm bảo chữ không bị xoay ngược khi hiển thị
+        letter.style.transform = `translate(${x}px, ${y}px) rotate(${i * (360 / alphabet.length) + 90}deg)`; // Thêm 90 độ để chữ hiển thị đúng hướng
+        lettersContainer.appendChild(letter);
+    }
+
+    let isDragging = false;
+    let startAngle = 0;
+    let currentRotation = 0;
+
+    // Bắt đầu kéo
+    cipherWheel.addEventListener('mousedown', startDrag);
+    cipherWheel.addEventListener('touchstart', startDrag);
+
+    // Kéo
+    cipherWheel.addEventListener('mousemove', drag);
+    cipherWheel.addEventListener('touchmove', drag);
+
+    // Kết thúc kéo
+    cipherWheel.addEventListener('mouseup', endDrag);
+    cipherWheel.addEventListener('touchend', endDrag);
+
+    function startDrag(e) {
+        isDragging = true;
+        startAngle = getAngle(e);
+    }
+
+    function drag(e) {
+        if (!isDragging) return;
+
+        const newAngle = getAngle(e);
+        const deltaAngle = newAngle - startAngle;
+        currentRotation += deltaAngle;
+        
+        lettersContainer.style.transform = `rotate(${currentRotation}deg)`;
+        startAngle = newAngle;
+    }
+
+    function endDrag() {
+        isDragging = false;
+    }
+
+    function getAngle(e) {
+        let clientX, clientY;
+        if (e.type.includes('touch')) {
+            clientX = e.touches[0].clientX;
+            clientY = e.touches[0].clientY;
+        } else {
+            clientX = e.clientX;
+            clientY = e.clientY;
+        }
+
+        const rect = cipherWheel.getBoundingClientRect();
+        const x = clientX - (rect.left + rect.width / 2);
+        const y = clientY - (rect.top + rect.height / 2);
+        return Math.atan2(y, x) * (180 / Math.PI);
+    }
+});
+    </script>
+  </body>
+</html>

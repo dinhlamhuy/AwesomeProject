@@ -19,6 +19,7 @@ import {
 import tw from "twrnc";
 // import { windowHeight } from "../../utils/Dimensions";
 import DropdownItem from "../../components/DropdownItem";
+import { windowHeight, windowWidth } from "../../utils/Dimensions";
 const menuSettings = [
   {
     tittle: "Edit Profile",
@@ -89,15 +90,25 @@ const menuSettings = [
 
 const SettingsScreen = () => {
   return (
-    <View style={tw`flex-1 pb-14  bg-[#333]`}>
+    <View
+      style={[
+        tw`flex-1 bg-[#1d2235] `,
+        {
+          width: windowWidth,
+          minHeight: windowHeight,
+          paddingBottom: 110,
+        },
+      ]}
+    >
       <ScrollView
         style={{
           padding: 20,
           paddingTop: 50,
-          paddingBottom: 100,
+          paddingBottom: 60,
+          // paddingBottom: 100,
         }}
         keyboardShouldPersistTaps="handled"
-        contentContainerStyle={{ flexGrow: 1 }}
+        contentContainerStyle={{ flexGrow: 1, paddingBottom: 60 }}
       >
         {menuSettings.map((item, index) => (
           <DropdownItem
@@ -114,14 +125,14 @@ const SettingsScreen = () => {
             {item.subDropdown?.map((subItem, subIndex) => (
               <Text
                 key={subIndex}
-                style={tw` pl-8 font-bold py-2 bg-gray-950 text-white rounded mb-0.5`}
+                style={tw` pl-8 font-bold py-2 bg-[#171d2d] text-white rounded mb-0.5`}
               >
                 {subItem.tittle}
               </Text>
             ))}
           </DropdownItem>
         ))}
-        <View style={tw`h-24`}></View>
+        {/* <View style={tw`h-24`}></View> */}
       </ScrollView>
     </View>
   );

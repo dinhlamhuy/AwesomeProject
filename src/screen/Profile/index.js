@@ -4,7 +4,7 @@
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable quotes */
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import {
   View,
   Text,
@@ -24,7 +24,7 @@ import DropdownItem from "../../components/DropdownItem";
 
 const PersonalInfo = () => {
   const data = [
-    { name: "Date Of Birth", value: "07 Sep 1999", icon: "CakeIcon" },
+    { name: "Date Of Birth", value: "07 Dec 1999", icon: "CakeIcon" },
     { name: "Gender", value: "Male", icon: "UserIcon" },
     {
       name: "Email",
@@ -37,7 +37,7 @@ const PersonalInfo = () => {
     <View style={[tw` `, {}]}>
       <FlatList
         data={data}
-        keyExtractor={(_, index) => index.toString()}
+        keyExtractor={(_, index) => "Profile" + index.toString()}
         numColumns={2} // Chia thành 3 cột
         renderItem={({ item }) => (
           <View style={tw`w-1/2 flex-row items-center  py-2  gap-1`}>
@@ -76,6 +76,19 @@ const menuSettings = [
     subDropdown: [
       { tittle: "Push Notification", icon: "bell" },
       { tittle: "Email Alerts", icon: "mail" },
+      { tittle: "Email Alerts", icon: "mail" },
+      { tittle: "Email Alerts", icon: "mail" },
+      { tittle: "Email Alerts", icon: "mail" },
+      { tittle: "Email Alerts", icon: "mail" },
+      { tittle: "Email Alerts", icon: "mail" },
+    ],
+  },
+  {
+    tittle: "Place",
+    icon: "BellIcon",
+    subDropdown: [
+      { tittle: "Push Notification", icon: "bell" },
+      { tittle: "Email Alerts", icon: "mail" },
     ],
   },
 
@@ -94,6 +107,7 @@ const ProfileScreen = () => {
         tw`flex-1`,
         {
           width: windowWidth,
+          paddingBottom: 60,
         },
       ]}
       resizeMode="cover"
@@ -126,7 +140,7 @@ const ProfileScreen = () => {
                   source={require("../../assets/image/avt.jpg")}
                 ></Image>
                 <View
-                  style={tw`absolute bottom-0 right-2 border-white border bg-[#333] h-7 w-7  rounded-full flex justify-center items-center    `}
+                  style={tw`absolute bottom-0 right-2 border-white border bg-[#171d2d] h-7 w-7  rounded-full flex justify-center items-center    `}
                 >
                   <PencilIcon size={16} style={[tw`text-white font-bold`]} />
                 </View>
@@ -144,9 +158,10 @@ const ProfileScreen = () => {
                   return (
                     <View
                       style={[
-                        tw` gap-2 my-1 rounded-lg px-1`,
+                        tw` gap-2 my-1 rounded-lg px-1 pr-5`,
                         {
-                          backgroundColor: "rgba(88, 41, 41, 0.58)",
+                          // backgroundColor: "rgba(88, 41, 41, 0.58)",
+                          backgroundColor: "rgba(23,29,45,0.58)",
                         },
                       ]}
                     >
@@ -168,9 +183,9 @@ const ProfileScreen = () => {
                 return (
                   <View
                     style={[
-                      tw` gap-2 my-1 rounded-lg px-1`,
+                      tw` gap-2 my-1 rounded-lg px-1  pr-5`,
                       {
-                        backgroundColor: "rgba(88, 41, 41, 0.58)",
+                        backgroundColor: "rgba(23,29,45,0.58)",
                       },
                     ]}
                   >

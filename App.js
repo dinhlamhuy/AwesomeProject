@@ -15,6 +15,7 @@ import {
   ProfileScreen,
   PokemonInfo,
   Pokemon,
+  TestSVG,
 } from "./src";
 import MainLayout from "./src/MainLayout";
 
@@ -79,6 +80,11 @@ export default function App() {
           <Stack.Screen
             name="Pokemon"
             component={Pokemon}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="TestSVG"
+            component={TestSVG}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

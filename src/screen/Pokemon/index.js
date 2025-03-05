@@ -4,7 +4,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Image,
   ImageBackground,
@@ -13,6 +13,7 @@ import {
   TouchableOpacity,
   View,
   ActivityIndicator,
+  RefreshControl,
 } from "react-native";
 import tw from "twrnc";
 import { windowWidth } from "../../utils/Dimensions";
@@ -26,11 +27,13 @@ const Pokemon = () => {
   const limit = 21;
   const [loading, setLoading] = useState(false);
   const imgPoke = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/`;
+  const [refreshing, setRefreshing] = useState(false);
 
   const FetchData = async () => {
     if (loading) return; // Nếu đang tải thì không gọi API nữa
     setLoading(true);
     try {
+      console.log("FetchData");
       const response = await axios.get(
         `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
       );
@@ -46,7 +49,13 @@ const Pokemon = () => {
       setLoading(false);
     }
   };
-
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      FetchData();
+      setRefreshing(false);
+    }, 2000);
+  }, []);
   useEffect(() => {
     FetchData();
   }, []);
@@ -97,11 +106,14 @@ const Pokemon = () => {
       <FlatList
         data={data}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.id.toString() + Math.random().toString()}
         numColumns={3}
         columnWrapperStyle={tw`justify-center`}
         onEndReached={FetchData}
         onEndReachedThreshold={0.5} // Load dữ liệu khi gần đến cuối danh sách
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
         ListFooterComponent={
           loading && <ActivityIndicator size="large" color="#FFD700" />
         }

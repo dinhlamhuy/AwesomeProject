@@ -30,7 +30,7 @@ const DropdownItem = ({
   const animatedHeight = useRef(new Animated.Value(0)).current;
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const translateYAnim = useRef(new Animated.Value(50)).current;
-
+  const [contentHeight, setContentHeight] = useState(0);
   useEffect(() => {
     setTimeout(() => {
       Animated.parallel([
@@ -49,7 +49,8 @@ const DropdownItem = ({
   }, [translateYAnim, fadeAnim]);
 
   const toggleDropdown = () => {
-    const toValue = expanded ? 0 : 38 * sl; // 100 là chiều cao tối đa, có thể chỉnh theo nội dung
+    // const toValue = expanded ? 0 : 38 * sl; // 100 là chiều cao tối đa, có thể chỉnh theo nội dung
+    const toValue = expanded ? 0 : contentHeight; // 100 là chiều cao tối đa, có thể chỉnh theo nội dung
     Animated.timing(animatedHeight, {
       toValue,
       duration: 300, // Thời gian animation (300ms)
@@ -57,6 +58,10 @@ const DropdownItem = ({
     }).start();
 
     setExpanded(!expanded);
+  };
+  const handleContentLayout = (event) => {
+    const { height } = event.nativeEvent.layout;
+    setContentHeight(height);
   };
 
   return (
@@ -97,7 +102,17 @@ const DropdownItem = ({
         <Animated.View
           style={{ height: animatedHeight, overflow: "hidden", marginTop: 5 }}
         >
-          <View style={{ paddingLeft: 15 }}>{children}</View>
+          <View
+            onLayout={handleContentLayout}
+            style={{
+              paddingLeft: 15,
+              position: "absolute",
+              width: "100%",
+              opacity: expanded ? 1 : 0,
+            }}
+          >
+            {children}
+          </View>
         </Animated.View>
       )}
     </Animated.View>

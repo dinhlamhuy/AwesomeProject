@@ -9,6 +9,7 @@ import SettingsScreen from "./screen/Settings";
 import ProfileScreen from "./screen/Profile";
 import PokemonInfo from "./screen/PokemonInfo";
 import Pokemon from "./screen/Pokemon";
+import TestSVG from "./screen/TestSVG";
 export {
   Login,
   Welcome,
@@ -20,4 +21,5 @@ export {
   ProfileScreen,
   PokemonInfo,
   Pokemon,
+  TestSVG,
 };

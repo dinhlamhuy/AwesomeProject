@@ -19,6 +19,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { BellIcon } from "react-native-heroicons/outline";
 import { windowWidth } from "../../utils/Dimensions";
 import { FlatList } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
+
 const carousel_data = [
   {
     id: 1,
@@ -57,6 +59,7 @@ const carousel_data = [
   },
 ];
 export default function Home() {
+  const navigate = useNavigation();
   const scrollY = useRef(new Animated.Value(0)).current;
   const HEADER_HEIGHT = 72; // Chiều cao header thực tế
 
@@ -68,7 +71,7 @@ export default function Home() {
 
   return (
     <View style={tw`flex-1`}>
-      <SafeAreaView style={tw`flex-1 bg-gray-100  bg-[#333]  pt-10 px-2`}>
+      <SafeAreaView style={tw`flex-1 bg-gray-100  bg-[#20273a]  pt-10 px-2`}>
         <View>
           <Text style={tw`font-bold text-2xl py-1  text-white `}>
             Hi Huii !
@@ -138,7 +141,12 @@ export default function Home() {
               <Text style={tw`font-bold text-[18px] text-white`}>
                 Categories
               </Text>
-              <Text style={tw`text-blue-400`}>View All</Text>
+              <Text
+                style={tw`text-blue-400`}
+                onPress={() => navigate.navigate("TestSVG")}
+              >
+                View All
+              </Text>
             </View>
             <View style={tw`mt-3`}>
               <ScrollView

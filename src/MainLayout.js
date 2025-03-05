@@ -17,11 +17,14 @@ import {
   createDrawerNavigator,
   DrawerContentScrollView,
 } from "@react-navigation/drawer";
-import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 import * as Animatable from "react-native-animatable";
 import Icon from "./components/Icons";
 import Colors from "./constants/Colors";
-import { Home, QRScan, SettingsScreen, ProfileScreen, Pokemon } from "../src";
+import { Home, SettingsScreen, ProfileScreen, Pokemon } from "../src";
 
 import tw from "twrnc";
 
@@ -46,16 +49,16 @@ const TabArr = [
     component: ProfileScreen,
   },
   {
-    route: "Search",
-    label: "Search",
+    route: "PokemonName",
+    label: "PokemonName",
     type: "CreditCardIcon",
     activeIcon: "timeline-plus",
     inActiveIcon: "timeline-plus-outline",
     component: Pokemon,
   },
   {
-    route: "Account",
-    label: "Account",
+    route: "Setting",
+    label: "Setting",
     type: "Cog6ToothIcon",
     activeIcon: "user-circle",
     inActiveIcon: "user-circle-o",
@@ -127,7 +130,6 @@ const BottomTabNavigator = ({ navigation }) => {
           <Icon type="BellIcon" color={"#fff"} />
         </TouchableOpacity>
       </View>
-
       <Tab.Navigator
         screenOptions={{
           headerShown: false,
@@ -163,47 +165,57 @@ const BottomTabNavigator = ({ navigation }) => {
 
 const CustomDrawerContent = ({ navigation }) => {
   return (
-    <View style={{ flex: 1, backgroundColor: "#8200d6" }}>
+    <View style={{ flex: 1, backgroundColor: "#333" }}>
       <DrawerContentScrollView>
         <ImageBackground
           source={require("./assets/image/lock.png")}
           style={{ paddingTop: 30, paddingBottom: 30, height: 150 }}
         ></ImageBackground>
         <View
-          style={{ flex: 1, padding: 20, backgroundColor: "#fff", height: 800 }}
+          style={[
+            tw`flex-1`,
+            { flex: 1, padding: 20, backgroundColor: "#333" },
+          ]}
         >
           <TouchableOpacity
+            style={tw`py-2  my-1`}
             onPress={() => {
               navigation.closeDrawer();
               navigation.navigate("HomeTabs", { screen: "Home" });
             }}
           >
-            <Text>Trang Chủ</Text>
+            <Text style={tw`text-[4] font-bold text-white`}>Trang Chủ</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
+            style={tw`py-2  my-1`}
             onPress={() => {
               navigation.closeDrawer();
-              navigation.navigate("Search");
+              navigation.navigate("PokemonName");
             }}
           >
-            <Text>Tìm Kiếm</Text>
+            <Text style={tw`text-[4] font-bold text-white`}>Pokemon</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
+            style={tw`py-2  my-1`}
             onPress={() => {
               navigation.closeDrawer();
-              navigation.navigate("Account");
+              navigation.navigate("Setting");
             }}
           >
-            <Text>Hồ Sơ</Text>
+            <Text style={tw`text-[4] font-bold text-white`}>Cài đặt</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => {}} style={{ paddingVertical: 15 }}>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <Text style={tw`text-[4] font-bold text-white`}>Đăng xuất</Text>
+            </View>
           </TouchableOpacity>
         </View>
       </DrawerContentScrollView>
-      <View style={{ backgroundColor: "#fff", padding: 20 }}>
+      {/* <View style={{ backgroundColor: "#fff", padding: 20 }}>
         <TouchableOpacity onPress={() => {}} style={{ paddingVertical: 15 }}>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
-            {/* <Ionicons name="exit-outline" size={22} /> */}
             <Text
               style={{
                 fontSize: 15,
@@ -215,7 +227,7 @@ const CustomDrawerContent = ({ navigation }) => {
             </Text>
           </View>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 };

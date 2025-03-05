@@ -7,7 +7,9 @@ import tw from "twrnc";
 import { windowWidth } from "../../utils/Dimensions";
 const renderBars = (score) => {
   return (
-    <View style={tw`flex-row flex-2 gap-1 pl-2 w-full justify-center items-center`}>
+    <View
+      style={tw`flex-row flex-2 gap-1 pl-2 w-full justify-center items-center`}
+    >
       {Array.from({ length: 15 }).map((_, i) => (
         <View
           key={i}
@@ -45,6 +47,7 @@ const Status = ({ dataStats }) => {
 
         return (
           <View
+            key={"stus" + index}
             style={[
               tw`flex-row items-center justify-between py-2  px-4`,
               { width: windowWidth },
