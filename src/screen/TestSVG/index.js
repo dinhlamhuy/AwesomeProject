@@ -57,7 +57,7 @@ const TestSVG = () => {
             style={tw`bg-gray-950 absolute bottom-0 rounded-full`}
             fill="yellow"
             stroke="white" // Border trắng
-            strokeWidth={2} // Độ dày border
+            strokeWidth={1} // Độ dày border
             strokeLinecap="round" // Bo tròn các cạnh
           />
         </G>

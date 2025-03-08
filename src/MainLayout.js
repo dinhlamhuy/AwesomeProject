@@ -24,7 +24,13 @@ import {
 import * as Animatable from "react-native-animatable";
 import Icon from "./components/Icons";
 import Colors from "./constants/Colors";
-import { Home, SettingsScreen, ProfileScreen, Pokemon } from "../src";
+import {
+  Home,
+  SettingsScreen,
+  ProfileScreen,
+  Pokemon,
+  TravelList,
+} from "../src";
 
 import tw from "twrnc";
 
@@ -49,12 +55,12 @@ const TabArr = [
     component: ProfileScreen,
   },
   {
-    route: "PokemonName",
-    label: "PokemonName",
+    route: "TravelList",
+    label: "TravelList",
     type: "CreditCardIcon",
     activeIcon: "timeline-plus",
     inActiveIcon: "timeline-plus-outline",
-    component: Pokemon,
+    component: TravelList,
   },
   {
     route: "Setting",
@@ -191,10 +197,10 @@ const CustomDrawerContent = ({ navigation }) => {
             style={tw`py-2  my-1`}
             onPress={() => {
               navigation.closeDrawer();
-              navigation.navigate("PokemonName");
+              navigation.navigate("TravelList");
             }}
           >
-            <Text style={tw`text-[4] font-bold text-white`}>Pokemon</Text>
+            <Text style={tw`text-[4] font-bold text-white`}>TravelList</Text>
           </TouchableOpacity>
 
           <TouchableOpacity

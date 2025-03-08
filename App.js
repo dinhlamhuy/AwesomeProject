@@ -16,11 +16,43 @@ import {
   PokemonInfo,
   Pokemon,
   TestSVG,
+  TravelListDetail,
+  TravelList,
 } from "./src";
 import MainLayout from "./src/MainLayout";
+import { Easing } from "react-native-reanimated";
+import { createSharedElementStackNavigator } from "react-navigation-shared-element";
 
-const Stack = createNativeStackNavigator();
+// const Stack = createNativeStackNavigator();
+const Stack = createSharedElementStackNavigator();
+const options = () => ({
+  gestureEnabled: false,
+  headerBackTitleVisible: false,
+  transitionSpec: {
+    open: {
+      animation: "timing",
+      config: {
+        duration: 400,
+        easing: Easing.inOut(Easing.ease),
+      },
+    },
+    close: {
+      animation: "timing",
+      config: {
+        duration: 400,
+        easing: Easing.inOut(Easing.ease),
+      },
+    },
+  },
+});
 
+cardSrtyleInterpolator: ({ current: { progress } }) => {
+  return {
+    cardStyle: {
+      opacity: progress,
+    },
+  };
+};
 export default function App() {
   return (
     <PaperProvider>
@@ -86,6 +118,16 @@ export default function App() {
             name="TestSVG"
             component={TestSVG}
             options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="TravelListDetail"
+            component={TravelListDetail}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="TravelList"
+            component={TravelList}
+            options={options}
           />
         </Stack.Navigator>
       </NavigationContainer>
